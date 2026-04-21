@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "project_name": "MoveMind Oman – Campus Program",
+    "participant_name": "محمد الرحبي",
+    "project_goal": "تحويل نتائج البيانات الرسمية إلى برنامج تطبيقي داخل الجامعات يربط النشاط البدني بالصحة النفسية لدى الشباب.",
+    "target_group": "الشابات في البيئة الجامعية كنقطة بداية للتدخل",
+    "age_groups": [
+      "15–19",
+      "20–24",
+      "25–29",
+      "30–34"
+    ],
+    "selected_sources": [
+      {
+        "name": "Oman STEPS Survey 2025 – Ministry of Health, Oman",
+        "url": "https://moh.gov.om/media/0iabhoql/omn-2025_factsheet_-omani-and-non-omani.pdf"
+      },
+      {
+        "name": "Oman Data Portal",
+        "url": "https://data.gov.om"
+      },
+      {
+        "name": "GCC-Stat",
+        "url": "https://gccstat.org"
+      }
+    ]
+  },
+  "records": [
+    {
+      "category_ar": "نشاط بدني غير كافٍ",
+      "category_en": "Insufficient physical activity",
+      "overall": 27.9,
+      "male": 23.6,
+      "female": 36.0,
+      "unit": "%",
+      "source_name": "Oman STEPS Survey 2025 – Ministry of Health, Oman",
+      "source_url": "https://moh.gov.om/media/0iabhoql/omn-2025_factsheet_-omani-and-non-omani.pdf",
+      "source_type": "official_pdf",
+      "notes": "Official indicator used in project analysis."
+    },
+    {
+      "category_ar": "عدم ممارسة نشاط ترفيهي",
+      "category_en": "No recreational activity",
+      "overall": 56.6,
+      "male": null,
+      "female": null,
+      "unit": "%",
+      "source_name": "Oman STEPS Survey 2025 – Ministry of Health, Oman",
+      "source_url": "https://moh.gov.om/media/0iabhoql/omn-2025_factsheet_-omani-and-non-omani.pdf",
+      "source_type": "official_pdf",
+      "notes": "Official indicator used in project framing."
+    },
+    {
+      "category_ar": "نوبة اكتئابية",
+      "category_en": "Depressive episode",
+      "overall": 5.5,
+      "male": 3.7,
+      "female": 8.8,
+      "unit": "%",
+      "source_name": "Oman STEPS Survey 2025 – Ministry of Health, Oman",
+      "source_url": "https://moh.gov.om/media/0iabhoql/omn-2025_factsheet_-omani-and-non-omani.pdf",
+      "source_type": "official_pdf",
+      "notes": "Official mental burden indicator used in project analysis."
+    }
+  ]
+}

@@ -343,33 +343,33 @@ function runAIModel() {
     const resultDiv = document.getElementById('aiResult');
     resultDiv.style.display = "block";
     
-    // 2. التحقق من منطقية بيانات النوم الإدخالية
-    if (sleep > 24 || sleep < 0 || isNaN(sleep) || isNaN(activity)) {
+    // 2. التحقق من منطقية البيانات والحدود الصحية الحتمية
+    if (isNaN(sleep) || isNaN(activity) || sleep > 24 || sleep < 0 || activity < 0) {
         resultDiv.style.background = "#f39c12";
         resultDiv.style.color = "white";
-        resultDiv.innerHTML = "⚠️ خطأ في الإدخال: يرجى كتابة أرقام منطقية وصحيحة لساعات النوم ودقائق النشاط.";
+        resultDiv.innerHTML = "⚠️ خطأ في الإدخال: يرجى كتابة أرقام منطقية وصحيحة.";
         return;
     }
 
-    // 3. تطبيق منطق الشروط الحتمية والصحية (الخمول التام أو قلة النوم الحادة)
-    if (activity === 0 || sleep > 16 || sleep < 4) {
+    // 3. شروط الخطر الحتمية (الخمول الحاد أو النوم المفرط/المضطرب)
+    if (activity <= 30 || sleep >= 11 || sleep <= 4) {
         resultDiv.style.background = "#e74c3c";
         resultDiv.style.color = "white";
-        resultDiv.innerHTML = "⚠️ تنبيه خطورة حاد: الخمول البدني التام (0 دقيقة) أو اضطراب النوم الشديد يضعك مباشرة في نطاق الخطر الصحي والنفسي العالي وفقاً للأدلة الإحصائية ومؤشرات عمان 2025.";
+        resultDiv.innerHTML = "⚠️ تنبيه خطورة حاد: الخمول البدني الشديد (أقل من 30 دقيقة أسبوعياً) أو الإفراط الحاد في النوم (أكثر من 10 ساعات) يضعك مباشرة في نطاق الخطر الصحي والنفسي وفقاً لمؤشرات عمان 2025.";
         return;
     }
     
-    // 4. احتساب الأوزان الإحصائية النسبية للحالات الأخرى
+    // 4. احتساب الأوزان الإحصائية النسبية للحالات المتوسطة
     let score = 0;
     if (gender === "أنثى") score += 2; 
-    if (activity <= 150) score += 3;
+    if (activity < 150) score += 3;
     if (sleep < 6) score += 2;
     
-    // 5. اتخاذ القرار بناءً على المجموع
+    // 5. اتخاذ القرار بناءً على المجموع التراكمي
     if (score >= 5) {
         resultDiv.style.background = "#e74c3c";
         resultDiv.style.color = "white";
-        resultDiv.innerHTML = "⚠️ تنبيه خطورة مرتفعة: مؤشراتك التراكمية تضعك في نطاق العبء النفسي والبدني. ننصحك بالانضمام الفوري لبرنامج ومجتمع MoveMind الجامعي للتدخل العملي.";
+        resultDiv.innerHTML = "⚠️ تنبيه خطورة مرتفعة: مؤشراتك التراكمية تضعك في نطاق العبء النفسي والبدني. ننصحك بالانضمام لبرنامج MoveMind الجامعي للتدخل العملي.";
     } else {
         resultDiv.style.background = "#2ecc71";
         resultDiv.style.color = "white";
@@ -377,6 +377,7 @@ function runAIModel() {
     }
 }
 </script>
+
 
     }
 }

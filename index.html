@@ -334,5 +334,54 @@ buildTabs();
 buildTable();
 renderMetric(0);
 </script>
+  <script>
+function runAIModel() {
+    // 1. سحب مدخلات الطالب من الواجهة
+    const gender = document.getElementById('gender').value;
+    const activity = parseInt(document.getElementById('activity').value);
+    const sleep = parseInt(document.getElementById('sleep').value);
+    
+    const resultDiv = document.getElementById('aiResult');
+    resultDiv.style.display = "block";
+    
+    // 2. فحص منطقية البيانات الإدخالية (منع الأرقام الخيالية)
+    if (isNaN(sleep) || isNaN(activity) || sleep > 24 || sleep < 0 || activity < 0 || activity > 10000) {
+        resultDiv.style.background = "#f39c12"; // لون برتقالي للخطأ الإدخالي
+        resultDiv.style.color = "white";
+        resultDiv.innerHTML = "⚠️ عذراً، يرجى إدخال أرقام منطقية وصحيحة لدقائق النشاط وساعات النوم.";
+        return;
+    }
+
+    // 3. تقييم النوم والنشاط بناءً على المعايير الصحية لمسح عمان 2025
+    let activityIssue = (activity < 150); // خطر قلة النشاط (أقل من 150 دقيقة أسبوعياً)
+    let sleepIssue = (sleep < 6 || sleep > 9); // خطر اضطراب النوم (أقل من 6 أو أكثر من 9 ساعات)
+
+    // 4. اتخاذ القرار المنطقي الصارم
+    if (activityIssue || sleepIssue) {
+        // إذا وجد أي خلل في النشاط أو النوم، يظهر اللون الأحمر فوراً
+        resultDiv.style.background = "#e74c3c"; // لون أحمر للخطر
+        resultDiv.style.color = "white";
+        
+        // صياغة رسالة تحذيرية ذكية تحدد المشكلة بدقة للطالب
+        let message = "⚠️ تنبيه خطورة: ";
+        if (activityIssue && sleepIssue) {
+            message += "مؤشراتك تظهر خمولاً بديداً حاداً واضطراباً في النوم معاً.";
+        } else if (activityIssue) {
+            message += "نشاطك البدني الأسبوعي أقل من المعدل الصحي المطلوب (150 دقيقة).";
+        } else if (sleepIssue) {
+            message += "معدل ساعات نومك اليومي غير متزن ويؤثر على جودة حياتك النفسية.";
+        }
+        message += " ننصحك بالانضمام الفوري لبرنامج MoveMind الجامعي لتعديل جدولك.";
+        resultDiv.innerHTML = message;
+
+    } else {
+        // إذا كان النشاط والنوم ممتازين تماماً، يظهر اللون الأخضر الآمن
+        resultDiv.style.background = "#2ecc71"; // لون أخضر للأمان
+        resultDiv.style.color = "white";
+        resultDiv.innerHTML = "✅ وضع آمن: مؤشراتك الحالية متزنة وصحية وتطابق معايير جودة الحياة النشطة. استمر على هذا النهج الممتاز!";
+    }
+}
+</script>
+
 </body>
 </html>

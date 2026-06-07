@@ -1,6 +1,15 @@
 <body>
   <div class="gov-layout">
-
+<header class="gov-header">
+  <div>
+    <h1>MoveMind Oman – Statistical Dashboard</h1>
+    <p>Ministry-style Analytical System • بيانات صحية-سلوكية</p>
+  </div>
+  <div class="meta">
+    آخر تحديث: 2026 | النسخة التجريبية
+  </div>
+</header>
+    
   <!-- Sidebar -->
   <aside class="sidebar">
     <h2>MoveMind</h2>
@@ -140,6 +149,71 @@
     .grid-kpi, .content, .two-col { grid-template-columns:1fr; }
   }
 </style>
+  body{
+  background:#eef2f7;
+}
+
+/* Header حكومي */
+.gov-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 24px;
+  background:#0b1f33;
+  color:#fff;
+  border-bottom:4px solid #1d4ed8;
+}
+
+.gov-header h1{
+  margin:0;
+  font-size:18px;
+  font-weight:700;
+}
+
+.gov-header p{
+  margin:4px 0 0;
+  font-size:12px;
+  color:#cbd5e1;
+}
+
+.gov-header .meta{
+  font-size:12px;
+  color:#93c5fd;
+}
+
+/* Sidebar رسمي أكثر */
+.sidebar{
+  background:#0a1626 !important;
+  border-right:1px solid #1e293b;
+}
+
+.sidebar h2{
+  font-size:16px;
+  letter-spacing:1px;
+}
+
+/* Main layout */
+.main{
+  background:#f6f8fb;
+}
+
+/* Cards حكومية */
+.card{
+  border-radius:10px;
+  box-shadow:none;
+  border:1px solid #e5e7eb;
+}
+
+/* KPI شكل رسمي */
+.kpi .value{
+  font-size:34px;
+  color:#0b1f33;
+}
+
+.kpi{
+  border-left:4px solid #1d4ed8;
+}
+  
 </head>
 <body>
 <div class="wrap">

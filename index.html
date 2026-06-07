@@ -329,6 +329,7 @@ function buildTabs() {
 
 function renderMetric(idx) {
   const rec = DATA.records[idx];
+
   metricName.textContent = rec.category_ar + " – مقارنة حسب الجنس";
   genderBars.innerHTML = "";
 
@@ -344,22 +345,34 @@ function renderMetric(idx) {
     row.className = "bar-row";
     row.innerHTML = `
       <div class="bar-label">${r.label}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${Math.min(val,100)}%"></div></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${Math.min(val,100)}%"></div>
+      </div>
       <div class="bar-val">${r.value == null ? "—" : r.value + "%"}</div>
     `;
     genderBars.appendChild(row);
   });
 
+  // 🧠 AI Insight
   let insight = "";
+
   if (rec.category_ar === "نشاط بدني غير كافٍ") {
     insight = "تظهر المؤشرات أن الإناث أعلى من الذكور في قلة النشاط البدني، وهو ما يدعم بدء التدخل من البيئة الجامعية الموجهة للشابات.";
-  } else if (rec.category_ar === "نوبة اكتئابية") {
+  } 
+  else if (rec.category_ar === "نوبة اكتئابية") {
     insight = "العبء النفسي أعلى لدى الإناث كذلك، وعند جمع هذا المؤشر مع قلة النشاط البدني تظهر أولوية واضحة للتدخل المبكر.";
-  } else {
+  } 
+  else {
     insight = "أكثر من نصف العينة لا يمارسون نشاطًا ترفيهيًا، ما يعني أن المشكلة ليست في الوعي فقط، بل في نمط حياة يحتاج تدخلًا عمليًا قريبًا من يوم الشباب.";
   }
-  insightText.textContent = insight;
-  generateAIInsightByIndex(idx);
+
+  // 📊 Risk Score
+  const risk = calculateRiskScore(idx);
+
+  // عرض موحد
+  insightText.innerHTML =
+    insight +
+    "<br><br><b>🧠 AI Risk Score:</b> " + risk + " / 100";
 }
 
 function buildTable() {
@@ -483,6 +496,28 @@ document.getElementById('depressionChart'),
   }
 
   document.getElementById("aiInsightText").innerText = insight;
+}
+    function calculateRiskScore(idx) {
+  const rec = DATA.records[idx];
+
+  let score = 0;
+
+  // نشاط بدني
+  if (rec.category_ar === "نشاط بدني غير كافٍ") {
+    score += rec.overall * 0.6;
+  }
+
+  // الاكتئاب
+  if (rec.category_ar === "نوبة اكتئابية") {
+    score += rec.overall * 2;
+  }
+
+  // نشاط ترفيهي
+  if (rec.category_ar === "عدم ممارسة نشاط ترفيهي") {
+    score += rec.overall * 0.4;
+  }
+
+  return Math.min(Math.round(score), 100);
 }
 </script>
   

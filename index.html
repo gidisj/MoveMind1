@@ -9,7 +9,6 @@
     آخر تحديث: 2026 | النسخة التجريبية
   </div>
 </header>
-    
   <!-- Sidebar -->
   <aside class="sidebar">
     <h2>MoveMind</h2>
@@ -20,15 +19,12 @@
     <a href="#">📄 التقارير</a>
     <a href="#">⚙️ الإعدادات</a>
   </aside>
-
   <!-- Main -->
   <main class="main">
-    
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <script src="https://cdn.jsdelivr.net/npm/chart.js">
-    
   </script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -151,10 +147,8 @@
   @media (max-width: 900px) {
     .grid-kpi, .content, .two-col { grid-template-columns:1fr; }
   }
-    body{
-
+    body
 </style>
-  
 </head>
 <body>
 <div class="wrap">
@@ -170,9 +164,7 @@
       <span class="badge">مرتبط ببيانات رسمية مختارة من Oman STEPS 2025</span>
     </div>
   </section>
-
   <section class="grid-kpi" id="kpiRow"></section>
-
   <section class="content">
     <div class="card">
       <h2 class="section-title">لوحة المؤشرات الرئيسية</h2>
@@ -180,15 +172,12 @@
       <div class="card">
       <div class="panel">
         <div class="card">
- 
 </div>
-        
         <div class="two-col">
           <div>
             <h3>النشاط البدني حسب الجنس</h3>
   <canvas id="activityChart"></canvas>
 </div>
-
 <div class="card">
   <h3>الاكتئاب حسب الجنس</h3>
   <canvas id="depressionChart"></canvas>
@@ -208,7 +197,6 @@
           </div>
         </div>
       </div>
-
       <div class="two-col" style="margin-top:16px;">
         <div class="mini">
           <h4>منطق الحل المقترح</h4>
@@ -227,12 +215,10 @@
           </ul>
         </div>
       </div>
-
       <div class="footer-note">
         هذا الملف التنفيذي مرتبط بقاعدة بيانات المشروع المرفقة معه (JSON / CSV)، والمبنية من المؤشرات الرسمية المختارة المستخدمة في التحليل.
       </div>
     </div>
-
     <div class="callout">
       <h3>برنامج MoveMind Campus</h3>
       <p>
@@ -259,7 +245,6 @@
       </div>
     </div>
   </section>
-
   <section class="card" style="margin-top:18px;">
     <h2 class="section-title">قاعدة بيانات المشروع والمصادر</h2>
     <table class="source-table" id="dataTable">
@@ -282,22 +267,18 @@
     </div>
   </section>
 </div>
-
 <script>
 const DATA = {"meta": {"project_name": "MoveMind Oman – Campus Program", "participant_name": "محمد الرحبي", "project_goal": "تحويل نتائج البيانات الرسمية إلى برنامج تطبيقي داخل الجامعات يربط النشاط البدني بالصحة النفسية لدى الشباب.", "target_group": "الشابات في البيئة الجامعية كنقطة بداية للتدخل", "age_groups": ["15–19", "20–24", "25–29", "30–34"], "selected_sources": [{"name": "Oman STEPS Survey 2025 – Ministry of Health, Oman", "url": "https://moh.gov.om/media/0iabhoql/omn-2025_factsheet_-omani-and-non-omani.pdf"}, {"name": "Oman Data Portal", "url": "https://data.gov.om"}, {"name": "GCC-Stat", "url": "https://gccstat.org"}]}, "records": [{"category_ar": "نشاط بدني غير كافٍ", "category_en": "Insufficient physical activity", "overall": 27.9, "male": 23.6, "female": 36.0, "unit": "%", "source_name": "Oman STEPS Survey 2025 – Ministry of Health, Oman", "source_url": "https://moh.gov.om/media/0iabhoql/omn-2025_factsheet_-omani-and-non-omani.pdf", "source_type": "official_pdf", "notes": "Official indicator used in project analysis."}, {"category_ar": "عدم ممارسة نشاط ترفيهي", "category_en": "No recreational activity", "overall": 56.6, "male": null, "female": null, "unit": "%", "source_name": "Oman STEPS Survey 2025 – Ministry of Health, Oman", "source_url": "https://moh.gov.om/media/0iabhoql/omn-2025_factsheet_-omani-and-non-omani.pdf", "source_type": "official_pdf", "notes": "Official indicator used in project framing."}, {"category_ar": "نوبة اكتئابية", "category_en": "Depressive episode", "overall": 5.5, "male": 3.7, "female": 8.8, "unit": "%", "source_name": "Oman STEPS Survey 2025 – Ministry of Health, Oman", "source_url": "https://moh.gov.om/media/0iabhoql/omn-2025_factsheet_-omani-and-non-omani.pdf", "source_type": "official_pdf", "notes": "Official mental burden indicator used in project analysis."}]};
-
 const tabs = document.getElementById("tabs");
 const genderBars = document.getElementById("genderBars");
 const insightText = document.getElementById("insightText");
 const metricName = document.getElementById("metricName");
 const kpiRow = document.getElementById("kpiRow");
 const dataTableBody = document.querySelector("#dataTable tbody");
-
 function fmt(v) {
   if (v === null || v === undefined || v === "") return "—";
   return v + "%";
 }
-
 function buildKPIs() {
   kpiRow.innerHTML = "";
   DATA.records.slice(0,3).forEach(rec => {
@@ -311,7 +292,6 @@ function buildKPIs() {
     kpiRow.appendChild(div);
   });
 }
-
 function buildTabs() {
   DATA.records.forEach((rec, idx) => {
     const btn = document.createElement("button");
@@ -325,19 +305,15 @@ function buildTabs() {
     tabs.appendChild(btn);
   });
 }
-
 function renderMetric(idx) {
   const rec = DATA.records[idx];
-
   metricName.textContent = rec.category_ar + " – مقارنة حسب الجنس";
   genderBars.innerHTML = "";
-
   const rows = [
     {label:"ذكور", value: rec.male},
     {label:"إناث", value: rec.female},
     {label:"إجمالي", value: rec.overall}
   ];
-
   rows.forEach(r => {
     const val = r.value ?? 0;
     const row = document.createElement("div");
@@ -351,10 +327,8 @@ function renderMetric(idx) {
     `;
     genderBars.appendChild(row);
   });
-
   // 🧠 AI Insight
   let insight = "";
-
   if (rec.category_ar === "نشاط بدني غير كافٍ") {
     insight = "تظهر المؤشرات أن الإناث أعلى من الذكور في قلة النشاط البدني، وهو ما يدعم بدء التدخل من البيئة الجامعية الموجهة للشابات.";
   } 
@@ -364,16 +338,13 @@ function renderMetric(idx) {
   else {
     insight = "أكثر من نصف العينة لا يمارسون نشاطًا ترفيهيًا، ما يعني أن المشكلة ليست في الوعي فقط، بل في نمط حياة يحتاج تدخلًا عمليًا قريبًا من يوم الشباب.";
   }
-
   // 📊 Risk Score
   const risk = calculateRiskScore(idx);
-
   // عرض موحد
   insightText.innerHTML =
     insight +
     "<br><br><b>🧠 AI Risk Score:</b> " + risk + " / 100";
 }
-
 function buildTable() {
   DATA.records.forEach(rec => {
     const tr = document.createElement("tr");
@@ -387,7 +358,6 @@ function buildTable() {
     dataTableBody.appendChild(tr);
   });
 }
-
 buildKPIs();
 buildTabs();
 buildTable();
@@ -397,40 +367,31 @@ renderMetric(0);
 <div style="background: #f4f6f9; padding: 20px; border-radius: 12px; max-width: 500px; margin: 20px auto; font-family: sans-serif; direction: rtl; text-align: right; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
     <h3 style="color: #2c3e50; margin-bottom: 15px;">🧠 فحص المؤشرات الذكي (MoveMind AI)</h3>
     <p style="font-size: 14px; color: #7f8c8d;">أدخل بياناتك الحالية ليقوم النظام بتحليل مستوى الخطورة النفسية والبدنية:</p>
-    
     <label style="display:block; margin: 10px 0 5px;">الجنس:</label>
     <select id="gender" style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;">
         <option value="أنثى">أنثى   </option>
         <option value="ذكر">ذكر</option>
     </select>
-
     <label style="display:block; margin: 10px 0 5px;">دقائق النشاط البدني الأسبوعي:</label>
     <input type="number" id="activity" value="150" style="width:96%; padding:8px; border-radius:6px; border:1px solid #ccc;">
-
     <label style="display:block; margin: 10px 0 5px;">معدل ساعات النوم اليومي:</label>
     <input type="number" id="sleep" value="7" style="width:96%; padding:8px; border-radius:6px; border:1px solid #ccc;">
-
     <button onclick="runAIModel()" style="width:100%; background:#27ae60; color:white; padding:10px; border:none; border-radius:6px; margin-top:15px; cursor:pointer; font-weight:bold;">تشغيل خوارزمية التنبؤ الفوري</button>
-
     <div id="aiResult" style="margin-top: 15px; font-weight: bold; padding: 10px; border-radius: 6px; display: none;"></div>
 </div>
-
 <script>
 function runAIModel() {
     // 1. سحب مدخلات الطالب من الواجهة
     const gender = document.getElementById('gender').value;
     const activity = parseInt(document.getElementById('activity').value);
     const sleep = parseInt(document.getElementById('sleep').value);
-    
     const resultDiv = document.getElementById('aiResult');
     resultDiv.style.display = "block";
-    
     // 2. تطبيق منطق الأوزان الإحصائية المستمدة من مسح عمان 2025
     let score = 0;
     if (gender === "أنثى") score += 2; 
     if (activity < 150) score += 3;
     if (sleep < 6) score += 2;
-    
     // 3. اتخاذ القرار وإظهار النتيجة الذكية فوراً للطالب
     if (score >= 5) {
         resultDiv.style.background = "#e74c3c";
@@ -460,7 +421,6 @@ document.getElementById('activityChart'),
     responsive: true
   }
 });
-
 const depressionChart = new Chart(
 document.getElementById('depressionChart'),
 {
@@ -479,49 +439,37 @@ document.getElementById('depressionChart'),
 });
     function generateAIInsightByIndex(idx) {
   const rec = DATA.records[idx];
-
   let insight = "";
-
   if (rec.category_ar === "نشاط بدني غير كافٍ") {
     insight = "يوجد ارتفاع واضح في قلة النشاط البدني، خصوصًا لدى الإناث، مما يشير إلى نمط حياة جامعي غير نشط ويحتاج تدخل سلوكي.";
   }
-
   else if (rec.category_ar === "نوبة اكتئابية") {
     insight = "مؤشر الصحة النفسية يظهر تفاوتًا واضحًا بين الجنسين مع ارتفاع لدى الإناث، مما يستدعي دعمًا نفسيًا موجهًا داخل البيئة الجامعية.";
   }
-
   else {
     insight = "تشير البيانات إلى انخفاض في النشاط الترفيهي، مما يعكس نمط حياة غير متوازن ويستدعي برامج تحفيز مجتمعية داخل الجامعة.";
   }
-
   document.getElementById("aiInsightText").innerText = insight;
 }
     function calculateRiskScore(idx) {
   const rec = DATA.records[idx];
-
   let score = 0;
-
   // نشاط بدني
   if (rec.category_ar === "نشاط بدني غير كافٍ") {
     score += rec.overall * 0.6;
   }
-
   // الاكتئاب
   if (rec.category_ar === "نوبة اكتئابية") {
     score += rec.overall * 2;
   }
-
   // نشاط ترفيهي
   if (rec.category_ar === "عدم ممارسة نشاط ترفيهي") {
     score += rec.overall * 0.4;
   }
-
   return Math.min(Math.round(score), 100);
 }
 </script>
-  
   </main>
 </div>
 </body>
-  
 </html>

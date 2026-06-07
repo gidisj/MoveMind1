@@ -27,6 +27,9 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js">
+    
+  </script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>MoveMind Oman – Executive File</title>
@@ -175,6 +178,16 @@
       <h2 class="section-title">لوحة المؤشرات الرئيسية</h2>
       <div class="tabs" id="tabs"></div>
       <div class="panel">
+        <div class="card">
+  <h3>النشاط البدني حسب الجنس</h3>
+  <canvas id="activityChart"></canvas>
+</div>
+
+<div class="card">
+  <h3>الاكتئاب حسب الجنس</h3>
+  <canvas id="depressionChart"></canvas>
+</div>
+        
         <div class="two-col">
           <div>
             <div class="pill" id="metricName">مقارنة حسب الجنس</div>
@@ -412,6 +425,41 @@ function runAIModel() {
         resultDiv.innerHTML = "✅ وضع آمن: مؤشراتك الحالية متزنة وصحية! استمر في الحفاظ على هذا المعدل النشط.";
     }
 }
+</script>
+  <script>
+const activityChart = new Chart(
+document.getElementById('activityChart'),
+{
+  type: 'bar',
+  data: {
+    labels: ['ذكور', 'إناث', 'إجمالي'],
+    datasets: [{
+      label: 'النشاط البدني غير الكافي %',
+      data: [23.6, 36.0, 27.9],
+      backgroundColor: '#1d4ed8'
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
+
+const depressionChart = new Chart(
+document.getElementById('depressionChart'),
+{
+  type: 'bar',
+  data: {
+    labels: ['ذكور', 'إناث', 'إجمالي'],
+    datasets: [{
+      label: 'نوبات الاكتئاب %',
+      data: [3.7, 8.8, 5.5],
+      backgroundColor: '#0ea5a4'
+    }]
+  },
+  options: {
+    responsive: true
+  }
+});
 </script>
   
   </main>

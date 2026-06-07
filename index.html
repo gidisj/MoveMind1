@@ -179,6 +179,11 @@
       <div class="tabs" id="tabs"></div>
       <div class="card">
       <div class="panel">
+        <div class="card">
+  <h3>🧠 AI Insight Engine</h3>
+  <p id="aiInsightText"></p>
+</div>
+        
         <div class="two-col">
           <div>
             <h3>النشاط البدني حسب الجنس</h3>
@@ -459,6 +464,30 @@ document.getElementById('depressionChart'),
     responsive: true
   }
 });
+    function generateAIInsight() {
+  const activityFemale = 36.0;
+  const activityMale = 23.6;
+  const depressionFemale = 8.8;
+  const depressionMale = 3.7;
+
+  let insight = "";
+
+  if (activityFemale > activityMale) {
+    insight += "الإناث يظهر لديهن انخفاض أكبر في النشاط البدني مقارنة بالذكور. ";
+  }
+
+  if (depressionFemale > depressionMale) {
+    insight += "كما أن معدلات الاكتئاب أعلى لدى الإناث، مما يشير إلى حاجة لتدخل صحي موجه. ";
+  }
+
+  if (activityFemale > 30 && depressionFemale > 8) {
+    insight += "يوصى ببرنامج جامعي مخصص للنشاط البدني والدعم النفسي داخل الحرم الجامعي.";
+  }
+
+  document.getElementById("aiInsightText").innerText = insight;
+}
+
+generateAIInsight();
 </script>
   
   </main>
